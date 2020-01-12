@@ -4,10 +4,15 @@
             <h1>Search iTunes</h1>
             <br/>
 
-            <v-text-field v-model="search" placeholder="Enter Artist Name" autofocus/>
-            <v-card>
-                <v-card-title>{{search}}</v-card-title>
-            </v-card>
+            <v-row>
+                <v-form @submit.prevent="submit">
+                    <v-text-field 
+                        v-model="search" 
+                        label="Enter Artist Name"
+                        autofocus/>
+                </v-form>
+                <v-icon @click="submit">mdi-magnify</v-icon>
+            </v-row>
         </v-layout>
     </div>
 </template>
@@ -17,6 +22,11 @@ export default{
     data(){
         return{
             search:""
+        }
+    },
+    methods:{
+        submit(){
+            this.$router.push(`results/${this.search}`)
         }
     }
 }
